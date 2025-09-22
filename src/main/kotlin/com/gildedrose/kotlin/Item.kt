@@ -1,4 +1,4 @@
-package com.gildedrose
+package com.gildedrose.kotlin
 
 open class Item(
     var name: String,

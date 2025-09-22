@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.java;
 
 class GildedRose {
     Item[] items;
