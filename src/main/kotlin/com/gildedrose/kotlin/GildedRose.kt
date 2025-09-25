@@ -29,7 +29,7 @@ class GildedRose(val items: List<Item>) {
                     }
                 }
             }
-
+ 
             if (items[i].name != "Sulfuras, Hand of Ragnaros") {
                 items[i].sellIn = items[i].sellIn - 1
             }
