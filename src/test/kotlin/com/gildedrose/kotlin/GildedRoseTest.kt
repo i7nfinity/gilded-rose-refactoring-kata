@@ -73,6 +73,85 @@ internal class GildedRoseTest {
         assertEquals(22, app.items[0].quality)
     }
 
+
+    @Test
+    fun foo_100() {
+        val items = listOf(Item("foo", 0, 100))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("foo", app.items[0].name)
+    }
+
+    @Test
+    fun dexterity_Vest_100() {
+        val items = listOf(Item("Dexterity Vest", 10, 120))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("Dexterity Vest", app.items[0].name)
+        assertEquals(9, app.items[0].sellIn)
+        assertEquals(119, app.items[0].quality)
+    }
+
+    @Test
+    fun TAFKAL80ETC_15_120() {
+        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 120))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name)
+        assertEquals(9, app.items[0].sellIn)
+        assertEquals(20 + 100, app.items[0].quality)
+    }
+
+    @Test
+    fun TAFKAL80ETC_5_120() {
+        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 5, 120))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name)
+        assertEquals(4, app.items[0].sellIn)
+        assertEquals(20 + 100, app.items[0].quality)
+    }
+
+    @Test
+    fun test_5_120() {
+        val items = listOf(Item("test", -1, 120))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("test", app.items[0].name)
+        assertEquals(-2, app.items[0].sellIn)
+        assertEquals(18 + 100, app.items[0].quality)
+    }
+
+    @Test
+    fun test2_5_120() {
+        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", -1, 120))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name)
+        assertEquals(-2, app.items[0].sellIn)
+        assertEquals(0, app.items[0].quality)
+    }
+
+    @Test
+    fun test3_5_120() {
+        val items = listOf(Item("Aged Brie", -1, 120))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("Aged Brie", app.items[0].name)
+        assertEquals(-2, app.items[0].sellIn)
+        assertEquals(20 + 100, app.items[0].quality)
+    }
+
+    @Test
+    fun test3_1_120() {
+        val items = listOf(Item("Sulfuras, Hand of Ragnaros", -1, 120))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name)
+        assertEquals(-1, app.items[0].sellIn)
+        assertEquals(120, app.items[0].quality)
+    }
+
 }
 
 
