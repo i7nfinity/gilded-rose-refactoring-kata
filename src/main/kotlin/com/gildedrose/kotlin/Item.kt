@@ -1,11 +1,23 @@
 package com.gildedrose.kotlin
 
-// TODO леньтяй
 open class Item(
     // TODO var -> val
     var name: String,
     var sellIn: Int,
     var quality: Int,
 ) {
+    fun updateSellIn(increment: Int) {
+        sellIn += increment
+    }
+
+    fun updateQuality(increment: Int) {
+        quality += increment
+    }
+
+    @JvmName("asd")
+    fun setQuality(newQuality: Int) {
+        quality = newQuality
+    }
+
     override fun toString(): String = "$name, $sellIn, $quality"
 }

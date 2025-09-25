@@ -55,7 +55,7 @@ internal class GildedRoseTest {
             Item("Backstage passes to a TAFKAL80ETC concert", -8, 0),
         )
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQuality2()
         assertEquals(expectedItems.toString(), app.items.toString())
     }
 
