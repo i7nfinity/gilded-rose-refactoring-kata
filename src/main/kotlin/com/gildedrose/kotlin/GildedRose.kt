@@ -1,58 +1,61 @@
 package com.gildedrose.kotlin
 
-class GildedRose(val items: List<Item>) {
+/*
+длинные методы
+класс данных \ ленивый класс
+зависть функций
+цепочка вызовов
+дублирование кода
+магические числа
+сложность условий
+расходящиеся изменения
+ */
+class GildedRose(private val items: List<Item>) {
 
-    fun updateQuality() {
-        for (i in items.indices) {
-            if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
-                if (items[i].quality > 0) {
-                    if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                        items[i].quality = items[i].quality - 1
+    fun updateQuality() { // todo: длинные методы
+        for (item in items) {
+            if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") { // todo: magic numbers
+                if (item.quality > 0) {
+                    if (item.name != "Sulfuras, Hand of Ragnaros") { // todo: сложность условий
+                        item.decrementQuality()
                     }
                 }
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1
+                if (!item.hasMaximalQuality()) {
+                    item.incrementQuality()
 
-                    if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1
-                            }
+                    if (item.name == "Backstage passes to a TAFKAL80ETC concert") { // todo: magic numbers, сложность условий
+                        if (item.sellIn < 11) { // todo: magic numbers, сложность условий
+                            item.incrementQualityIfPossible()
                         }
 
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1
-                            }
+                        if (item.sellIn < 6) { // todo: magic numbers, сложность условий
+                            item.incrementQualityIfPossible()
                         }
                     }
                 }
             }
 
-            if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                items[i].sellIn = items[i].sellIn - 1
+            if (item.name != "Sulfuras, Hand of Ragnaros") { // todo: magic numbers
+                item.sellIn = item.sellIn - 1
             }
 
-            if (items[i].sellIn < 0) {
-                if (items[i].name != "Aged Brie") {
-                    if (items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].quality > 0) {
-                            if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                                items[i].quality = items[i].quality - 1
+            if (item.sellIn < 0) { // todo: magic numbers
+                if (item.name != "Aged Brie") { // todo: magic numbers
+                    if (item.name != "Backstage passes to a TAFKAL80ETC concert") { // todo: magic numbers, сложность условий
+                        if (item.quality > 0) { // todo: magic numbers, сложность условий
+                            if (item.name != "Sulfuras, Hand of Ragnaros") { // todo: magic numbers, сложность условий
+                                item.decrementQuality()
                             }
                         }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality
+                    } else { // todo: сложность условий
+                        item.quality = item.quality - item.quality
                     }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1
-                    }
+                } else { // todo: сложность условий
+                    item.incrementQualityIfPossible()
                 }
             }
         }
     }
-
 }
 
