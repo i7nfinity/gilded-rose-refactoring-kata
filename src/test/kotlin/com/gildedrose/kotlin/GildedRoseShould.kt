@@ -9,13 +9,13 @@ class GildedRoseShould {
     @ParameterizedTest
     @CsvSource(
         "1, 9, 19",
-        "2, 8, 18", 
+        "2, 8, 18",
         "3, 7, 17"
     )
     fun `define that regular items decrease quality and sellIn by 1 every day`
                 (daysCount: Int, sellIn: Int, quality: Int) {
         val items = listOf(
-            Item("+5 Dexterity Vest", 10, 20)
+            RegularItem("+5 Dexterity Vest", 10, 20)
         )
         val app = GildedRose(items)
 
@@ -23,7 +23,7 @@ class GildedRoseShould {
             app.updateQuality()
         }
 
-        assertThat(items.first().toString()).isEqualTo(Item("+5 Dexterity Vest", sellIn, quality).toString())
+        assertThat(items.first().toString()).isEqualTo(RegularItem("+5 Dexterity Vest", sellIn, quality).toString())
     }
 
     @ParameterizedTest
@@ -36,7 +36,7 @@ class GildedRoseShould {
     fun `define that regular items decrease quality and sellIn by 2 every day when sellIn is 0`
                 (daysCount: Int, sellIn: Int, quality: Int) {
         val items = listOf(
-            Item("Elixir of the Mongoose", 0, 5)
+            RegularItem("Elixir of the Mongoose", 0, 5)
         )
         val app = GildedRose(items)
 
@@ -44,7 +44,7 @@ class GildedRoseShould {
             app.updateQuality()
         }
 
-        assertThat(items.first().toString()).isEqualTo(Item("Elixir of the Mongoose", sellIn, quality).toString())
+        assertThat(items.first().toString()).isEqualTo(RegularItem("Elixir of the Mongoose", sellIn, quality).toString())
     }
 
     @ParameterizedTest
@@ -65,7 +65,7 @@ class GildedRoseShould {
     )
     fun `define that Backstage increase quality by 1, than after 10 by 2, than after 5 by 3`(daysCount: Int, sellIn: Int, quality: Int) {
         val items = listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 12, 34),
+            BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 12, 34),
         )
 
         val app = GildedRose(items)
@@ -74,7 +74,7 @@ class GildedRoseShould {
             app.updateQuality()
         }
 
-        assertThat(items.first().toString()).isEqualTo(Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality).toString())
+        assertThat(items.first().toString()).isEqualTo(BackstagePasses("Backstage passes to a TAFKAL80ETC concert", sellIn, quality).toString())
     }
 
     @ParameterizedTest
@@ -88,7 +88,7 @@ class GildedRoseShould {
     fun `define that Aged Brie improves quality over time, but not above 50`
                 (daysCount: Int, sellIn: Int, quality: Int) {
         val items = listOf(
-            Item("Aged Brie", 3, 45)
+            AgedBrie("Aged Brie", 3, 45)
         )
         val app = GildedRose(items)
 
@@ -96,7 +96,7 @@ class GildedRoseShould {
             app.updateQuality()
         }
 
-        assertThat(items.first().toString()).isEqualTo(Item("Aged Brie", sellIn, quality).toString())
+        assertThat(items.first().toString()).isEqualTo(AgedBrie("Aged Brie", sellIn, quality).toString())
     }
 
     @ParameterizedTest
@@ -109,7 +109,7 @@ class GildedRoseShould {
     fun `define that Sulfuras does not lose quality and sellIn over time`
                 (daysCount: Int, sellIn: Int, quality: Int) {
         val items = listOf(
-            Item("Sulfuras, Hand of Ragnaros", -1, 80),
+            Sulfuras("Sulfuras, Hand of Ragnaros", -1, 80),
         )
         val app = GildedRose(items)
 
@@ -117,6 +117,6 @@ class GildedRoseShould {
             app.updateQuality()
         }
 
-        assertThat(items.first().toString()).isEqualTo(Item("Sulfuras, Hand of Ragnaros", sellIn, quality).toString())
+        assertThat(items.first().toString()).isEqualTo(Sulfuras("Sulfuras, Hand of Ragnaros", sellIn, quality).toString())
     }
 }

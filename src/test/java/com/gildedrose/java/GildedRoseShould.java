@@ -1,8 +1,9 @@
 package com.gildedrose.java;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class GildedRoseShould {
 
@@ -14,7 +15,7 @@ public class GildedRoseShould {
     })
     public void defineThatRegularItemsDecreaseQualityAndSellInBy1EveryDay(int daysCount, int sellIn, int quality) {
         Item[] items = new Item[]{
-                new Item("+5 Dexterity Vest", 10, 20)
+                new RegularItem("+5 Dexterity Vest", 10, 20)
         };
         GildedRose app = new GildedRose(items);
 
@@ -22,7 +23,7 @@ public class GildedRoseShould {
             app.updateQuality();
         }
 
-        Assertions.assertThat(items[0].toString()).isEqualTo(new Item("+5 Dexterity Vest", sellIn, quality).toString());
+        assertThat(items[0].toString()).isEqualTo(new RegularItem("+5 Dexterity Vest", sellIn, quality).toString());
     }
 
     @ParameterizedTest
@@ -34,7 +35,7 @@ public class GildedRoseShould {
     })
     public void defineThatRegularItemsDecreaseQualityAndSellInBy2EveryDayWhenSellInIs0(int daysCount, int sellIn, int quality) {
         Item[] items = new Item[]{
-                new Item("Elixir of the Mongoose", 0, 5)
+                new RegularItem("Elixir of the Mongoose", 0, 5)
         };
         GildedRose app = new GildedRose(items);
 
@@ -42,7 +43,7 @@ public class GildedRoseShould {
             app.updateQuality();
         }
 
-        Assertions.assertThat(items[0].toString()).isEqualTo(new Item("Elixir of the Mongoose", sellIn, quality).toString());
+        assertThat(items[0].toString()).isEqualTo(new RegularItem("Elixir of the Mongoose", sellIn, quality).toString());
     }
 
     @ParameterizedTest
@@ -63,7 +64,7 @@ public class GildedRoseShould {
     })
     public void defineThatBackstageIncreaseQualityBy1ThanAfter10By2ThanAfter5By3(int daysCount, int sellIn, int quality) {
         Item[] items = new Item[]{
-                new Item("Backstage passes to a TAFKAL80ETC concert", 12, 34),
+                new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 12, 34),
         };
 
         GildedRose app = new GildedRose(items);
@@ -72,7 +73,7 @@ public class GildedRoseShould {
             app.updateQuality();
         }
 
-        Assertions.assertThat(items[0].toString()).isEqualTo(new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality).toString());
+        assertThat(items[0].toString()).isEqualTo(new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", sellIn, quality).toString());
     }
 
     @ParameterizedTest
@@ -85,7 +86,7 @@ public class GildedRoseShould {
     })
     public void defineThatAgedBrieImprovesQualityOverTimeButNotAbove50(int daysCount, int sellIn, int quality) {
         Item[] items = new Item[]{
-                new Item("Aged Brie", 3, 45)
+                new AgedBrie("Aged Brie", 3, 45)
         };
         GildedRose app = new GildedRose(items);
 
@@ -93,7 +94,7 @@ public class GildedRoseShould {
             app.updateQuality();
         }
 
-        Assertions.assertThat(items[0].toString()).isEqualTo(new Item("Aged Brie", sellIn, quality).toString());
+        assertThat(items[0].toString()).isEqualTo(new AgedBrie("Aged Brie", sellIn, quality).toString());
     }
 
     @ParameterizedTest
@@ -105,7 +106,7 @@ public class GildedRoseShould {
     })
     public void defineThatSulfurasDoesNotLoseQualityAndSellInOverTime(int daysCount, int sellIn, int quality) {
         Item[] items = new Item[]{
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+                new Sulfuras("Sulfuras, Hand of Ragnaros", -1, 80),
         };
         GildedRose app = new GildedRose(items);
 
@@ -113,6 +114,6 @@ public class GildedRoseShould {
             app.updateQuality();
         }
 
-        Assertions.assertThat(items[0].toString()).isEqualTo(new Item("Sulfuras, Hand of Ragnaros", sellIn, quality).toString());
+        assertThat(items[0].toString()).isEqualTo(new Sulfuras("Sulfuras, Hand of Ragnaros", sellIn, quality).toString());
     }
 }

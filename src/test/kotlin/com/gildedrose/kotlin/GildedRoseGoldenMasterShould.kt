@@ -8,20 +8,20 @@ class GildedRoseGoldenMasterShould {
     @Test
     fun `define quality of all items within 5 days`() {
         val items = listOf(
-            Item("+5 Dexterity Vest", 10, 20),
+            RegularItem("+5 Dexterity Vest", 10, 20),
 
-            Item("Aged Brie", 2, 0),
-            Item("Aged Brie", 0, 49),
+            AgedBrie("Aged Brie", 2, 0),
+            AgedBrie("Aged Brie", 0, 49),
 
-            Item("Elixir of the Mongoose", 5, 7),
+            RegularItem("Elixir of the Mongoose", 5, 7),
 
-            Item("Sulfuras, Hand of Ragnaros", 0, 80),
-            Item("Sulfuras, Hand of Ragnaros", -1, 80),
+            Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80),
+            Sulfuras("Sulfuras, Hand of Ragnaros", -1, 80),
 
-            Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-            Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-            Item("Backstage passes to a TAFKAL80ETC concert", 0, 49),
+            BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+            BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+            BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+            BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 0, 49),
         )
 
         val app = GildedRose(items)
