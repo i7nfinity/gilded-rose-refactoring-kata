@@ -27,9 +27,11 @@ internal class GildedRoseTest {
             // this conjured item does not work properly yet
             Item("Conjured Mana Cake", 3, 6),
             Item("Backstage passes to a TAFKAL80ETC concert", 7, 48),
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 48),
+            Item("Backstage passes to a TAFKAL80ETC concert", 5, 47),
+            Item("Backstage passes to a TAFKAL80ETC concert", 5, 80),
             Item("+5 Dexterity Vest", -10, 20), //
             Item("Aged Brie", -10, 0), //
+            Item("Aged Brie", -10, 60), //
             Item("Backstage passes to a TAFKAL80ETC concert", -7, 48),
 
         )
@@ -46,8 +48,10 @@ internal class GildedRoseTest {
             Item("Conjured Mana Cake", 2, 5),
             Item("Backstage passes to a TAFKAL80ETC concert", 6, 50),
             Item("Backstage passes to a TAFKAL80ETC concert", 4, 50),
+            Item("Backstage passes to a TAFKAL80ETC concert", 4, 80),
             Item("+5 Dexterity Vest", -11, 18), //
             Item("Aged Brie", -11, 2), //
+            Item("Aged Brie", -11, 60), //
             Item("Backstage passes to a TAFKAL80ETC concert", -8, 0),
         )
         val app = GildedRose(items)
