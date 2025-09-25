@@ -1,58 +1,22 @@
 package com.gildedrose.kotlin
 
+/**
+ * Основной класс системы Gilded Rose.
+ * Управляет обновлением качества предметов в магазине.
+ */
 class GildedRose(val items: List<Item>) {
 
+    /**
+     * Обновляет качество всех предметов в соответствии с бизнес-правилами.
+     * 
+     * Использует паттерн Strategy для применения специфичных правил
+     * обновления для каждого типа предмета.
+     */
     fun updateQuality() {
-        for (i in items.indices) {
-            if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
-                if (items[i].quality > 0) {
-                    if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                        items[i].quality = items[i].quality - 1
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1
-
-                    if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                items[i].sellIn = items[i].sellIn - 1
-            }
-
-            if (items[i].sellIn < 0) {
-                if (items[i].name != "Aged Brie") {
-                    if (items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].quality > 0) {
-                            if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                                items[i].quality = items[i].quality - 1
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1
-                    }
-                }
-            }
+        items.forEach { item ->
+            val updater = ItemUpdaterFactory.getUpdater(item)
+            updater.updateItem(item)
         }
     }
-
 }
 
