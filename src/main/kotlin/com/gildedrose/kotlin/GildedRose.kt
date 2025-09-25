@@ -3,8 +3,8 @@ package com.gildedrose.kotlin
 class GildedRose(val items: List<Item>) {
     
     val MAX_QUALITY = 50
-    val BACKSTAGE_BRIE_DAYS_THRESHOLD_LATER = 11
-    val BACKSTAGE_BRIE_DAYS_THRESHOLD_LATEST = 6
+    val BACKSTAGE_DAYS_THRESHOLD_LATER = 11
+    val BACKSTAGE_DAYS_THRESHOLD_LATEST = 6
 
     fun updateQuality() {
         for (i in items.indices) {
@@ -27,7 +27,7 @@ class GildedRose(val items: List<Item>) {
         }
     }
 
-    private fun changeBackstageBrieQuality(item: Item, threshold: Int) {
+    private fun changeBackstageQuality(item: Item, threshold: Int) {
         if (item.sellIn < threshold) {
             if (item.quality < MAX_QUALITY) {
                 changeQuality(item, 1)
@@ -42,8 +42,8 @@ class GildedRose(val items: List<Item>) {
             }
             ItemType.BACKSTAGE -> {
                 changeQuality(item, 1)
-                changeBackstageBrieQuality(item, BACKSTAGE_BRIE_DAYS_THRESHOLD_LATER)
-                changeBackstageBrieQuality(item, BACKSTAGE_BRIE_DAYS_THRESHOLD_LATEST)
+                changeBackstageQuality(item, BACKSTAGE_DAYS_THRESHOLD_LATER)
+                changeBackstageQuality(item, BACKSTAGE_DAYS_THRESHOLD_LATEST)
             }
             ItemType.SULFURAS -> Unit
             ItemType.COMMON -> changeQuality(item, -1)
